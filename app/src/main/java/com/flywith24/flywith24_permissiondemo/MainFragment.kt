@@ -2,9 +2,7 @@ package com.flywith24.flywith24_permissiondemo
 
 import android.Manifest
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fragment_main.*
 
@@ -17,9 +15,13 @@ import kotlinx.android.synthetic.main.fragment_main.*
 class MainFragment : Fragment(R.layout.fragment_main) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         requestPermission.setOnClickListener {
-            registerForActivityResult(ActivityResultContracts.RequestPermission()) {
-                result.text = "result $it"
-            }.launch(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+            requestPermission(Manifest.permission.RECORD_AUDIO,
+                granted = {
+                    result.text = getString(R.string.result_granted)
+                },
+                denied = {
+                    result.text = getString(R.string.result_denied)
+                })
         }
     }
 }

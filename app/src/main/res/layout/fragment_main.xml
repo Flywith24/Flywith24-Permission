@@ -5,12 +5,23 @@
     android:layout_height="match_parent"
     android:background="@color/colorAccent">
 
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="@string/main_fragment"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4"
+        android:textColor="?attr/colorSurface" />
+
     <com.google.android.material.button.MaterialButton
         android:id="@+id/requestPermission"
         android:layout_width="200dp"
-        android:text="Request Permission"
-        android:textAllCaps="false"
         android:layout_height="wrap_content"
+        android:text="@string/request_single_permission"
+        android:textAllCaps="false"
         app:layout_constraintBottom_toTopOf="@id/result"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,6 +31,7 @@
         android:id="@+id/result"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textAppearance="?attr/textAppearanceBody1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

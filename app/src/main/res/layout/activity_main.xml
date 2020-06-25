@@ -14,13 +14,14 @@
         app:layout_constraintBottom_toTopOf="@id/requestPermission"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/requestPermission"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
         android:gravity="center"
         android:onClick="click"
-        android:text="Hello World!"
+        android:text="@string/request_multiple_permissions"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/container" />
 

@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">PermissionDemo</string>
+    <string name="result_granted">result: granted</string>
+    <string name="result_denied">result: denied</string>
+    <string name="request_single_permission">请求单个权限</string>
+    <string name="main_fragment">MainFragment</string>
+    <string name="request_multiple_permissions">请求多个权限</string>
 </resources>
