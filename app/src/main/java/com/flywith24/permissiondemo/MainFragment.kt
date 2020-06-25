@@ -1,4 +1,4 @@
-package com.flywith24.flywith24_permissiondemo
+package com.flywith24.permissiondemo
 
 import android.Manifest
 import android.os.Bundle
