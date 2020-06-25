@@ -7,6 +7,13 @@ import com.flywith24.permission.requestMultiplePermissions
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
 
+/**
+ * @author Flywith24
+ * @date   2020/6/25
+ * time   15:22
+ * description
+ * Kotlin Demo
+ */
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
     fun click(view: View) {
