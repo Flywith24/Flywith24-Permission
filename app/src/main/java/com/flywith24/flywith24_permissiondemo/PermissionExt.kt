@@ -14,11 +14,15 @@ import androidx.fragment.app.Fragment
 inline fun ComponentActivity.requestPermission(
     permission: String,
     crossinline granted: () -> Unit = {},
-    crossinline denied: () -> Unit = {}
+    crossinline denied: () -> Unit = {},
+    crossinline explained: () -> Unit = {}
 ) {
     registerForActivityResult(ActivityResultContracts.RequestPermission()) { result ->
-        if (result) granted.invoke()
-        else denied.invoke()
+        when {
+            result -> granted.invoke()
+            shouldShowRequestPermissionRationale(permission) -> denied.invoke()
+            else -> explained.invoke()
+        }
     }.launch(permission)
 }
 
@@ -38,11 +42,16 @@ inline fun ComponentActivity.requestPermissions(
 inline fun Fragment.requestPermission(
     permission: String,
     crossinline granted: () -> Unit = {},
-    crossinline denied: () -> Unit = {}
+    crossinline denied: () -> Unit = {},
+    crossinline explained: () -> Unit = {}
+
 ) {
     registerForActivityResult(ActivityResultContracts.RequestPermission()) { result ->
-        if (result) granted.invoke()
-        else denied.invoke()
+        when {
+            result -> granted.invoke()
+            shouldShowRequestPermissionRationale(permission) -> denied.invoke()
+            else -> explained.invoke()
+        }
     }.launch(permission)
 }
 

@@ -4,6 +4,7 @@ import android.Manifest
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_main.*
 
 /**
@@ -21,6 +22,9 @@ class MainFragment : Fragment(R.layout.fragment_main) {
                 },
                 denied = {
                     result.text = getString(R.string.result_denied)
+                },
+                explained = {
+                    Snackbar.make(view, "勾选不再提示", Snackbar.LENGTH_SHORT).show()
                 })
         }
     }
