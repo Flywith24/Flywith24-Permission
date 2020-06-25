@@ -4,6 +4,7 @@ import android.Manifest
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import com.flywith24.permission.requestPermission
 import kotlinx.android.synthetic.main.fragment_main.*
 
 /**

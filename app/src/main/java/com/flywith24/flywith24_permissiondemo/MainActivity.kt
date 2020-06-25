@@ -3,6 +3,7 @@ package com.flywith24.flywith24_permissiondemo
 import android.Manifest
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import com.flywith24.permission.requestMultiplePermissions
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
 
