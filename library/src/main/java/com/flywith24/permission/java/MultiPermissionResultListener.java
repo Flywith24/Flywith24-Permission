@@ -8,7 +8,7 @@ import java.util.List;
  * time   20:44
  * description
  */
-interface MultiPermissionResultListener {
+public interface MultiPermissionResultListener {
     void allGranted();
 
     void denied(List<String> list);

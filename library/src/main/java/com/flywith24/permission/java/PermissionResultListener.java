@@ -6,7 +6,7 @@ package com.flywith24.permission.java;
  * time   20:47
  * description
  */
-interface PermissionResultListener {
+public interface PermissionResultListener {
     void granted(String permission);
 
     void denied(String permission);
