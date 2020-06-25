@@ -8,7 +8,7 @@ import com.google.android.material.snackbar.Snackbar
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
     fun click(view: View) {
-        requestPermissions(arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA),
+        requestMultiplePermissions(arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA),
                 allGranted = {
                     Snackbar.make(view, "all granted", Snackbar.LENGTH_SHORT).show()
                 },

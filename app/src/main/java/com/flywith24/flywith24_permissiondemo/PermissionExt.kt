@@ -10,60 +10,111 @@ import androidx.fragment.app.Fragment
  * @date   2020/6/25
  * time   15:30
  * description
+ * 权限请求扩展函数
+ */
+
+const val DENIED = "DENIED"
+const val EXPLAINED = "EXPLAINED"
+
+/**
+ * [granted] 申请成功
+ * [denied] 被拒绝且未勾选不再询问
+ * [explained] 被拒绝且勾选不再询问
  */
 inline fun ComponentActivity.requestPermission(
     permission: String,
-    crossinline granted: () -> Unit = {},
-    crossinline denied: () -> Unit = {},
-    crossinline explained: () -> Unit = {}
+    crossinline granted: (permission: String) -> Unit = {},
+    crossinline denied: (permission: String) -> Unit = {},
+    crossinline explained: (permission: String) -> Unit = {}
 ) {
     registerForActivityResult(ActivityResultContracts.RequestPermission()) { result ->
         when {
-            result -> granted.invoke()
-            shouldShowRequestPermissionRationale(permission) -> denied.invoke()
-            else -> explained.invoke()
+            result -> granted.invoke(permission)
+            shouldShowRequestPermissionRationale(permission) -> denied.invoke(permission)
+            else -> explained.invoke(permission)
         }
     }.launch(permission)
 }
 
-inline fun ComponentActivity.requestPermissions(
+/**
+ * [allGranted] 所有权限均申请成功
+ * [denied] 被拒绝且未勾选不再询问，同时被拒绝且未勾选不再询问的权限列表
+ * [explained] 被拒绝且勾选不再询问，同时被拒绝且勾选不再询问的权限列表
+ */
+inline fun ComponentActivity.requestMultiplePermissions(
     permissions: Array<String>,
     crossinline allGranted: () -> Unit = {},
-    crossinline denied: (List<String>) -> Unit = {}
+    crossinline denied: (List<String>) -> Unit = {},
+    crossinline explained: (List<String>) -> Unit = {}
 ) {
     registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { result: MutableMap<String, Boolean> ->
         //过滤 value 为 false 的元素并转换为 list
         val deniedList = result.filter { !it.value }.map { it.key }
-
-        if (deniedList.isNotEmpty()) denied.invoke(deniedList) else allGranted.invoke()
+        when {
+            deniedList.isNotEmpty() -> {
+                //对被拒绝全选列表进行分组，分组条件为是否勾选不再询问
+                val map = deniedList.groupBy { permission ->
+                    if (shouldShowRequestPermissionRationale(permission)) DENIED else EXPLAINED
+                }
+                //被拒接且没勾选不再询问
+                map[DENIED]?.let { denied.invoke(it) }
+                //被拒接且勾选不再询问
+                map[EXPLAINED]?.let { explained.invoke(it) }
+            }
+            else -> allGranted.invoke()
+        }
     }.launch(permissions)
 }
 
+
+/**
+ * [granted] 申请成功
+ * [denied] 被拒绝且未勾选不再询问
+ * [explained] 被拒绝且勾选不再询问
+ */
 inline fun Fragment.requestPermission(
     permission: String,
-    crossinline granted: () -> Unit = {},
-    crossinline denied: () -> Unit = {},
-    crossinline explained: () -> Unit = {}
+    crossinline granted: (permission: String) -> Unit = {},
+    crossinline denied: (permission: String) -> Unit = {},
+    crossinline explained: (permission: String) -> Unit = {}
 
 ) {
     registerForActivityResult(ActivityResultContracts.RequestPermission()) { result ->
         when {
-            result -> granted.invoke()
-            shouldShowRequestPermissionRationale(permission) -> denied.invoke()
-            else -> explained.invoke()
+            result -> granted.invoke(permission)
+            shouldShowRequestPermissionRationale(permission) -> denied.invoke(permission)
+            else -> explained.invoke(permission)
         }
     }.launch(permission)
 }
 
-inline fun Fragment.requestPermissions(
+/**
+ * [allGranted] 所有权限均申请成功
+ * [denied] 被拒绝且未勾选不再询问，同时被拒绝且未勾选不再询问的权限列表
+ * [explained] 被拒绝且勾选不再询问，同时被拒绝且勾选不再询问的权限列表
+ */
+inline fun Fragment.requestMultiplePermissions(
     permissions: Array<String>,
     crossinline allGranted: () -> Unit = {},
-    crossinline denied: (List<String>) -> Unit = {}
+    crossinline denied: (List<String>) -> Unit = {},
+    crossinline explained: (List<String>) -> Unit = {}
 ) {
     registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { result: MutableMap<String, Boolean> ->
         //过滤 value 为 false 的元素并转换为 list
         val deniedList = result.filter { !it.value }.map { it.key }
-
-        if (deniedList.isNotEmpty()) denied.invoke(deniedList) else allGranted.invoke()
+        when {
+            deniedList.isNotEmpty() -> {
+                //对被拒绝全选列表进行分组，分组条件为是否勾选不再询问
+                val map = deniedList.groupBy { permission ->
+                    if (shouldShowRequestPermissionRationale(permission)) DENIED else EXPLAINED
+                }
+                //被拒接且没勾选不再询问
+                map[DENIED]?.let { denied.invoke(it) }
+                //被拒接且勾选不再询问
+                map[EXPLAINED]?.let { explained.invoke(it) }
+            }
+            else -> allGranted.invoke()
+        }
     }.launch(permissions)
 }
+
