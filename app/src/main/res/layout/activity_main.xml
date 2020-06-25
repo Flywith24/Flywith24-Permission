@@ -8,21 +8,49 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/container"
-        android:layout_width="match_parent"
         android:name="com.flywith24.flywith24_permissiondemo.MainFragment"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@id/requestPermission"
+        app:layout_constraintHeight_percent="0.5"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvMain"
+        style="@style/Widget.App.TextView.Title"
+        android:text="@string/main_activity"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/container" />
+
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/requestPermission"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
-        android:gravity="center"
+        style="@style/Widget.App.Button"
         android:onClick="click"
         android:text="@string/request_multiple_permissions"
+        app:layout_constraintBottom_toTopOf="@id/deniedResult"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvMain" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/deniedResult"
+        style="@style/Widget.App.TextView.Title"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+        app:layout_constraintBottom_toTopOf="@id/explainedResult"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/requestPermission"
+        tools:text="result1" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/explainedResult"
+        style="@style/Widget.App.TextView.Title"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/container" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/deniedResult"
+        tools:text="result2" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

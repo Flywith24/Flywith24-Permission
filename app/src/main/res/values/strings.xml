@@ -1,8 +1,13 @@
 <resources>
     <string name="app_name">PermissionDemo</string>
-    <string name="result_granted">result: granted</string>
-    <string name="result_denied">result: denied</string>
+    <string name="result_granted">单一权限请求结果:\n%1$s\n权限申请成功！</string>
+    <string name="result_denied">单一权限请求结果:\n%1$s\n权限申请失败！未勾选不再询问</string>
+    <string name="result_explained">单一权限请求结果:\n%1$s\n权限申请失败！已勾选不再询问</string>
+    <string name="result_granted_list">多权限请求结果:\n权限全部申请成功！</string>
+    <string name="result_denied_list">多权限请求结果:\n%1$s\n限申请失败！未勾选不再询问</string>
+    <string name="result_explained_list">多权限请求结果:\n%1$s\n权限申请失败！已勾选不再询问</string>
     <string name="request_single_permission">请求单个权限</string>
     <string name="main_fragment">MainFragment</string>
     <string name="request_multiple_permissions">请求多个权限</string>
+    <string name="main_activity">MainActivity</string>
 </resources>
