@@ -1,5 +1,32 @@
 # 使用 Activity Result API + Kotlin 扩展函数 封装权限请求库
 
+## 引入
+
+[![](https://jitpack.io/v/Flywith24/Flywith24-Permission.svg)](https://jitpack.io/#Flywith24/Flywith24-Permission)
+
+1. 在项目根目录的 `build.gradle` 加入
+
+   ``` groovy
+   allprojects {
+   		repositories {
+   			...
+   			maven { url 'https://jitpack.io' }
+   		}
+   	}
+   ```
+
+   
+
+2. 添加依赖
+
+   ``` groovy
+   dependencies {
+	  implementation 'com.github.Flywith24:Flywith24-Permission:$version'
+	}
+   ```
+
+
+
 ## Activity Result API
 
 在  Android Jetpack `Activity 1.2.0-alpha02` 和 `Fragment 1.3.0-alpha02` 中，Google 提供了全新的 **Activity Result API** 来替换 `startActivityForResult()`+`onActivityResult()`和`requestPermissions()`+`onRequestPermissionsResult()`。详情可移步[官方文档](https://developer.android.com/training/basics/intents/result)
