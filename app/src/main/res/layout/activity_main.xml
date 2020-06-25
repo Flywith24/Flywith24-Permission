@@ -8,7 +8,7 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/container"
-        android:name="com.flywith24.flywith24_permissiondemo.MainFragment"
+        android:name="com.flywith24.permissiondemo.MainFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintHeight_percent="0.5"
