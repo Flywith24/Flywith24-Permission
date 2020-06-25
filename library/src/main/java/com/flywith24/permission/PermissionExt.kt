@@ -17,6 +17,7 @@ const val DENIED = "DENIED"
 const val EXPLAINED = "EXPLAINED"
 
 /**
+ * [permission] 权限名称
  * [granted] 申请成功
  * [denied] 被拒绝且未勾选不再询问
  * [explained] 被拒绝且勾选不再询问
@@ -37,12 +38,13 @@ inline fun ComponentActivity.requestPermission(
 }
 
 /**
+ * [permissions] 权限数组
  * [allGranted] 所有权限均申请成功
  * [denied] 被拒绝且未勾选不再询问，同时被拒绝且未勾选不再询问的权限列表
  * [explained] 被拒绝且勾选不再询问，同时被拒绝且勾选不再询问的权限列表
  */
 inline fun ComponentActivity.requestMultiplePermissions(
-    permissions: Array<String>,
+    vararg permissions: String,
     crossinline allGranted: () -> Unit = {},
     crossinline denied: (List<String>) -> Unit = {},
     crossinline explained: (List<String>) -> Unit = {}
@@ -68,6 +70,7 @@ inline fun ComponentActivity.requestMultiplePermissions(
 
 
 /**
+ * [permission] 权限名称
  * [granted] 申请成功
  * [denied] 被拒绝且未勾选不再询问
  * [explained] 被拒绝且勾选不再询问
@@ -89,12 +92,13 @@ inline fun Fragment.requestPermission(
 }
 
 /**
+ * [permissions] 权限数组
  * [allGranted] 所有权限均申请成功
  * [denied] 被拒绝且未勾选不再询问，同时被拒绝且未勾选不再询问的权限列表
  * [explained] 被拒绝且勾选不再询问，同时被拒绝且勾选不再询问的权限列表
  */
 inline fun Fragment.requestMultiplePermissions(
-    permissions: Array<String>,
+    vararg permissions: String,
     crossinline allGranted: () -> Unit = {},
     crossinline denied: (List<String>) -> Unit = {},
     crossinline explained: (List<String>) -> Unit = {}
