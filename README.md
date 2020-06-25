@@ -6,7 +6,7 @@
 
 
 
-## requestPermissions()`/`onRequestPermissionsResult() 被弃用
+## requestPermissions() / onRequestPermissionsResult() 被弃用
 
 紧接着在 `Activity 1.2.0-alpha04` 和 `Fragment 1.3.0-alpha04` 版本中，
 
@@ -57,6 +57,7 @@ registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) 
 
 ``` kotlin
 /**
+ * [permission] 权限名称
  * [granted] 申请成功
  * [denied] 被拒绝且未勾选不再询问
  * [explained] 被拒绝且勾选不再询问
@@ -78,12 +79,13 @@ inline fun Fragment.requestPermission(
 }
 
 /**
+ * [permissions] 权限数组
  * [allGranted] 所有权限均申请成功
  * [denied] 被拒绝且未勾选不再询问，同时被拒绝且未勾选不再询问的权限列表
  * [explained] 被拒绝且勾选不再询问，同时被拒绝且勾选不再询问的权限列表
  */
 inline fun Fragment.requestMultiplePermissions(
-    permissions: Array<String>,
+    vararg permissions: String,
     crossinline allGranted: () -> Unit = {},
     crossinline denied: (List<String>) -> Unit = {},
     crossinline explained: (List<String>) -> Unit = {}
@@ -132,7 +134,7 @@ requestPermission(Manifest.permission.RECORD_AUDIO,
 ### 多权限申请
 
 ``` kotlin
-requestMultiplePermissions(arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA),
+requestMultiplePermissions(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA,
     allGranted = {
         //全部权限均已申请成功
     },
@@ -142,5 +144,53 @@ requestMultiplePermissions(arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE, M
     explained = {list->
         //权限申请失败且已勾选不再询问，需要向用户解释原因并引导用户开启权限
     })
+```
+
+
+
+## Java 版本
+
+Java 是可以调用 Kotlin 的扩展函数的，为了跟方便地调用，可以在此基础上再封装一层
+
+
+
+### 单一权限请求
+
+``` java
+PermissionUtils.requestPermission(this, permission, new PermissionResultListener() {
+    @Override
+    public void granted(String permission) {
+        Log.i(TAG, "granted: ");
+    }
+    @Override
+    public void denied(String permission) {
+        Log.i(TAG, "denied: ");
+    }
+    @Override
+    public void explained(String permission) {
+        Log.i(TAG, "explained: ");
+    }
+});
+```
+
+
+
+### 多权限请求
+
+``` java
+PermissionUtils.requestMultiplePermissions(this, new MultiPermissionResultListener() {
+    @Override
+    public void allGranted() {
+        Log.i(TAG, "allGranted: ");
+    }
+    @Override
+    public void denied(List<String> list) {
+        Log.i(TAG, "denied: " + list.toString());
+    }
+    @Override
+    public void explained(List<String> list) {
+        Log.i(TAG, "explained: " + list.toString());
+    }
+}, permissions);
 ```
 
