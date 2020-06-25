@@ -19,7 +19,7 @@ import kotlin.jvm.functions.Function1;
  * description
  * java 权限请求工具类
  */
-class PermissionUtils {
+public class PermissionUtils {
     /**
      * 请求单一权限
      *
