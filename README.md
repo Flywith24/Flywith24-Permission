@@ -27,6 +27,12 @@
 
 
 
+## 更新记录
+
+- 1.0.1 版本支持 Kotlin DSL 写法
+
+
+
 ## Activity Result API
 
 在  Android Jetpack `Activity 1.2.0-alpha02` 和 `Fragment 1.3.0-alpha02` 中，Google 提供了全新的 **Activity Result API** 来替换 `startActivityForResult()`+`onActivityResult()`和`requestPermissions()`+`onRequestPermissionsResult()`。详情可移步[官方文档](https://developer.android.com/training/basics/intents/result)
@@ -171,6 +177,51 @@ requestMultiplePermissions(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.
     explained = {list->
         //权限申请失败且已勾选不再询问，需要向用户解释原因并引导用户开启权限
     })
+```
+
+
+
+## Kotlin DSL 版本
+
+配合 Kotlin DSL，代码读起来会更容易
+
+### 单一权限申请
+
+``` kotlin
+// DSL 模式
+permission(Manifest.permission.RECORD_AUDIO) {
+    granted = { permission ->
+        //权限申请成功
+    }
+    denied = { permission ->
+        //权限申请失败且未勾选不再询问，下次可继续申请
+    }
+    explained = { permission ->
+        //权限申请失败且已勾选不再询问，需要向用户解释原因并引导用户开启权限
+    }
+}
+```
+
+
+
+### 多权限申请
+
+``` kotlin
+// DSL 模式
+permissions(
+    Manifest.permission.WRITE_EXTERNAL_STORAGE,
+    Manifest.permission.CAMERA
+) {
+    allGranted = {
+       //全部权限均已申请成功
+    }
+    denied = {list->
+       //权限申请失败且未勾选不再询问，下次可继续申请
+    }
+    explained = {list->
+        //权限申请失败且已勾选不再询问，需要向用户解释原因并引导用户开启权限
+    }
+}
 ```
 
 
