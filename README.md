@@ -1,3 +1,17 @@
+[activity 1.2.0-beta01](https://developer.android.com/jetpack/androidx/releases/activity#1.2.0-beta01) 后 `register()` 方法调用时机收到了生命周期的限制
+
+![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c28660b244cf41978f01274174c3a95d~tplv-k3u1fbpfcp-zoom-1.image)
+
+这意味着使用扩展函数的方式将不能使用，因为无法控制扩展函数的调用时机。
+
+基于新版本的行为变化我进行了新的封装，但在易用性上没有达到要求，感兴趣的小伙伴可以去看看：[Flywith24-ActivityResultRequest](https://github.com/Flywith24/Flywith24-ActivityResultRequest)
+
+目前的使用方式是这样，比较繁琐：
+
+![](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c45cdb96a7084f80afa93e1835320028~tplv-k3u1fbpfcp-watermark.image)
+
+
+
 # 使用 Activity Result API + Kotlin 扩展函数 封装权限请求库
 
 ## 引入
