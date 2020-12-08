@@ -1,4 +1,4 @@
-[activity 1.2.0-beta01](https://developer.android.com/jetpack/androidx/releases/activity#1.2.0-beta01) 后 `register()` 方法调用时机收到了生命周期的限制
+[activity 1.2.0-beta01](https://developer.android.com/jetpack/androidx/releases/activity#1.2.0-beta01) 后 `register()` 方法调用时机受到了生命周期的限制
 
 ![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c28660b244cf41978f01274174c3a95d~tplv-k3u1fbpfcp-zoom-1.image)
 
@@ -11,6 +11,9 @@
 ![](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c45cdb96a7084f80afa93e1835320028~tplv-k3u1fbpfcp-watermark.image)
 
 
+---
+分割线
+---
 
 # 使用 Activity Result API + Kotlin 扩展函数 封装权限请求库
 
